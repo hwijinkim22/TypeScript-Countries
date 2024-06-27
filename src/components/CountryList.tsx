@@ -23,7 +23,10 @@ const CountryList: React.FC = () => {
     const fetchCountries = async () => {
       try {
         const data = await getCountries();
-        setCountries(data);
+        const sortedData = data.sort((a,b) => 
+          a.name.common.localeCompare(b.name.common)
+        );
+        setCountries(sortedData);
       } catch (error) {
         alert(error);
       }
@@ -38,7 +41,16 @@ const CountryList: React.FC = () => {
       )
     ) {
       setSelectedCountries([...selectedCountries, country]);
+
+      setCountries(
+        countries.filter((selectedCountry: Country) => {
+          return selectedCountry.name.common !== country.name.common;
+        })
+      );
     } else {
+      
+      setCountries([country ,...countries])
+
       setSelectedCountries(
         selectedCountries.filter((selectedCountry: Country) => {
           return selectedCountry.name.common !== country.name.common;

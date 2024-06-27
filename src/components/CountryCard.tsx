@@ -3,7 +3,7 @@ import { Country } from "../types/Country";
 import styled from "styled-components";
 
 const CountryItem = styled.li`
-  flex: 0 0 33.3333%;
+  flex: 0 0 25%;
   box-sizing: border-box;
   padding: 10px;
   text-align: center;
